@@ -1,3 +1,4 @@
 [submodule "libunwind"]
 	path = libunwind
-	url = https://github.com/libunwind/libunwind.git
+	url = https://github.com/libunwind/libunwind
+	branch = v1.8-stable
