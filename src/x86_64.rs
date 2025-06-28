@@ -13,7 +13,7 @@ pub const UNW_TDEP_EH: u32 = x86_64_regnum_t_UNW_X86_64_RAX;
 //functions
 extern "C" {
     #[link_name = "__register_frame"]
-    pub fn __register_frame(fde: *mut const u8);
+    pub fn __register_frame(fde: *const u8);
     #[link_name = "_Ux86_64_create_addr_space"]
     pub fn unw_create_addr_space( accessors: *mut unw_accessors_t, byteorder: c_int) -> unw_addr_space_t;
 
