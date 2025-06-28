@@ -4,6 +4,7 @@
 
 
 use crate::*;
+use std::mem::ManuallyDrop;
 
 #[repr(C)]
 /// Doubly-linked list of dyn-info
