@@ -77,34 +77,29 @@ fn main() {
         }
     }
 
-    // Choose header.
-    let wrapper =  if link_lib_arch == "arm" && host.contains("x86_64") {
-        "wrapper-arm.h"
-    } else {
-        "wrapper.h"
-    };
+    
     let bindings = match link_lib_arch {
         "x86" => {
             bindgen::Builder::default()
-                .header(project_dir.join(wrapper).to_str().unwrap())
+                //.header(project_dir.join(wrapper).to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Ux86_.*")
         },
         "arm" => {
             bindgen::Builder::default()
-                .header(project_dir.join(wrapper).to_str().unwrap())
+                //.header(project_dir.join(wrapper).to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Uarm_.*")
         },
         "aarch64" => {
             bindgen::Builder::default()
-                .header(project_dir.join(wrapper).to_str().unwrap())
+                //.header(project_dir.join(wrapper).to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Uaarch64_.*")
         },
         _=> {
             bindgen::Builder::default()
-                .header(project_dir.join(wrapper).to_str().unwrap())
+                //.header(project_dir.join(wrapper).to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Ux86_64_.*")
         }
