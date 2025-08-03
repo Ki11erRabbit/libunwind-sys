@@ -19,7 +19,7 @@ pub use crate::dynamic::*;
 #[cfg_attr(target_arch = "arm", path = "arm.rs")]
 mod native;
 
-#[cfg_attr(target_arch = "x86_64", path = "dynamic_x86_64.rs")]
+
 pub mod dynamic;
 
 
