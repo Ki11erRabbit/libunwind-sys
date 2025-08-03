@@ -24,7 +24,7 @@ fn main() {
         "x86_64-unknown-linux-gnu"| "x86_64-unknown-linux-musl" => "x86_64",
         "i686-unknown-linux-gnu"|"i586-unknown-linux-gnu"  => "x86",
         "arm-unknown-linux-gnueabihf" => "arm",
-        "arm-unknown-linux-gnu" => "arm",
+        "aarch64-unknown-linux-gnu" => "arm",
         _ => ""
     };
     if link_lib_arch.is_empty() {
