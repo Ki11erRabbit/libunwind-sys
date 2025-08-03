@@ -81,25 +81,25 @@ fn main() {
     let bindings = match link_lib_arch {
         "x86" => {
             bindgen::Builder::default()
-                //.header(project_dir.join(wrapper).to_str().unwrap())
+                .header(project_dir.join("wrapper.h").to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Ux86_.*")
         },
         "arm" => {
             bindgen::Builder::default()
-                //.header(project_dir.join(wrapper).to_str().unwrap())
+                .header(project_dir.join("wrapper.h").to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Uarm_.*")
         },
         "aarch64" => {
             bindgen::Builder::default()
-                //.header(project_dir.join(wrapper).to_str().unwrap())
+                .header(project_dir.join("wrapper.h").to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Uaarch64_.*")
         },
         _=> {
             bindgen::Builder::default()
-                //.header(project_dir.join(wrapper).to_str().unwrap())
+                .header(project_dir.join("wrapper.h").to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Ux86_64_.*")
         }
