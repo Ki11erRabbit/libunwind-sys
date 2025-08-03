@@ -24,7 +24,7 @@ fn main() {
         "x86_64-unknown-linux-gnu"| "x86_64-unknown-linux-musl" => "x86_64",
         "i686-unknown-linux-gnu"|"i586-unknown-linux-gnu"  => "x86",
         "arm-unknown-linux-gnueabihf" => "arm",
-        "aarch64-unknown-linux-gnu" => "arm",
+        "aarch64-unknown-linux-gnu" => "aarch64",
         _ => ""
     };
     if link_lib_arch.is_empty() {
@@ -33,7 +33,7 @@ fn main() {
     }
 
     // Build native C library only for x86 and arm targets on x86_64 host.
-    if link_lib_arch == "x86" || link_lib_arch == "arm " {
+    if link_lib_arch == "x86" || link_lib_arch == "arm" || link_lib_arch == "aarch64" {
 
         // Build libunwind.
         let _autogen = Command::new("sh").current_dir(&libunwind_path)
@@ -95,6 +95,12 @@ fn main() {
                 .header(project_dir.join(wrapper).to_str().unwrap())
                 .clang_arg("-Ilibunwind/include")
                 .blocklist_function("_Uarm_.*")
+        },
+        "aarch64" => {
+            bindgen::Builder::default()
+                .header(project_dir.join(wrapper).to_str().unwrap())
+                .clang_arg("-Ilibunwind/include")
+                .blocklist_function("_Uaarch64_.*")
         },
         _=> {
             bindgen::Builder::default()
