@@ -34,6 +34,16 @@ fn main() {
 
     // Build native C library only for x86 and arm targets on x86_64 host.
     if link_lib_arch == "x86" || link_lib_arch == "arm" || link_lib_arch == "aarch64" {
+        
+        if link_lib_arch == "aarch64" {
+            // Set environment variables before building
+            // no optimizations seem to cause libunwind to fail when compiling
+            unsafe {
+                // Set environment variables before building
+                env::set_var("CFLAGS", "-O1 -fomit-frame-pointer");
+                env::set_var("CXXFLAGS", "-O1 -fomit-frame-pointer");
+            }
+        }
 
         // Build libunwind.
         let _autogen = Command::new("sh").current_dir(&libunwind_path)
@@ -77,7 +87,7 @@ fn main() {
         }
     }
 
-    
+
     let bindings = match link_lib_arch {
         "x86" => {
             bindgen::Builder::default()
